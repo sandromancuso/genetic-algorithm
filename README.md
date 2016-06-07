@@ -1,4 +1,9 @@
-# Genetic Algorithm - Robby, the Soda-Can-Collecting Robot
+Genetic Algorithm
+=================
+
+_This example was extracted from the book [Complexity: A Guided Tour](https://www.amazon.co.uk/Complexity-Guided-Tour-Melanie-Mitchell/dp/0199798109?ie=UTF8&ref_=asap_bc)_
+
+# Robby, the Soda-Can-Collecting Robot
 
 Robby's job is to clean up his world by collecting the empty soda cans. 
 
@@ -15,13 +20,13 @@ E.g: If Robby is as site 0,0, sites to the North and West are Walls.
 For each cleaning session, Robby can perform exactly 200 actions. Each action consists of one of the following 
 seven choices:
  
-* 0: Move North 
-* 1: Move South 
-* 2: Move East 
-* 3: Move West 
-* 4: Move to Random Direction 
-* 5: Stay Put 
-* 6: Pick Up Can  
+* Move North 
+* Move South 
+* Move East 
+* Move West 
+* Move to Random Direction 
+* Stay Put 
+* Pick Up Can  
         
 ## Points 
 
@@ -102,13 +107,13 @@ There are different ways to build a genetic algorithm, but here is one of them.
 The GA starts with an initial population of 200 random individuals (strategies). Each individual strategy is a list 
 of 243 "genes". Each gene is a number between 0 and 6:
 
-* 0: Move North
-* 1: Move South
-* 2: Move East
-* 3: Move West
-* 4: Stay Put
-* 5: Pick Up Can
-* 6: Random Move
+	0: Move North
+	1: Move South
+	2: Move East
+	3: Move West
+	4: Stay Put
+	5: Pick Up Can
+	6: Random Move
 
 In the initial population, these numbers are filled in at random. For this (and all other probabilistic or random
  choicse), the GA uses a pseudo-random-number generator. Repeat the following for 1,000 generations: 
@@ -123,12 +128,12 @@ is its average score over 100 different cleaning sessions, each of which has a d
 
 **Individual examples (strategies genome):**
  
-**Individual 1:** 3452365464324543654....45363534543 (up to 243 characters)
-**Individual 2:** 4356353453245634321....12342345312 (up to 243 characters)
-
-...
-
-**Individual 200:** 123465343134356242....65341315431 (up to 243 characters)
+	**Individual 1:** 3452365464324543654....45363534543 (up to 243 characters)
+	**Individual 2:** 4356353453245634321....12342345312 (up to 243 characters)
+	
+	...
+	
+	**Individual 200:** 123465343134356242....65341315431 (up to 243 characters)
  
 ### 3. Apply evolution 
  
