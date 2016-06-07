@@ -13,7 +13,23 @@ Robby's job is to clean up his world by collecting the empty soda cans.
 * Robby can only see 5 sites at a time: North, South, East, West, and the site he currently occupies. 
 * A site can be Empty, Contain a Can, or be a Wall.
  
-E.g: If Robby is as site 0,0, sites to the North and West are Walls. 
+E.g. Let's assume that Robby is "R" and the cans are "C". If Robby is as site 0,0, sites to the North and West are 
+Walls.
+ 
+	    0 1 2 3 4 5 6 7 8 9
+	   ---------------------
+	0 | R C   C C           | 0
+	1 |       C     C       | 1
+	2 |     C               | 2
+	3 |   C   C             | 3
+	4 |           C   C     | 4
+	5 |                     | 5
+	6 |     C C   C     C   | 6
+	7 | C     C       C     | 7
+	8 |           C         | 8
+	9 |   C                 | 9
+       ---------------------
+	    0 1 2 3 4 5 6 7 8 9
 
 ## Actions
 
