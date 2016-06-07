@@ -12,7 +12,7 @@ E.g: If Robby is as site 0,0, sites to the North and West are Walls.
 
 ## Actions
 
-* For each cleaning session, Robby can perform exactly 200 actions. Each action consists of one of the following 
+For each cleaning session, Robby can perform exactly 200 actions. Each action consists of one of the following 
 seven choices:
  
 * 0: Move North 
@@ -27,9 +27,9 @@ seven choices:
 
 Each action may generate a reward or a punishment. 
 
-10 pts = If Robby is in the same site as a can and pickets it up
--1 pts = If he tries to pick up a can in an empty site
--5 pts = If he crashes into a wall. In this case, he should bounce back into the current site.
+10 pts = If Robby is in the same site as a can and pickets it up    
+-1 pts = If he tries to pick up a can in an empty site    
+-5 pts = If he crashes into a wall. In this case, he should bounce back into the current site.    
    
 Clearly, Robby's reward is maximised when he picks up as many cans as possible, without crashing into any walls or 
 bending down to pick up a can if no can is there. 
@@ -58,16 +58,16 @@ know that some of them will never be encountered.
       
 ### Strategy example
       
-                Situation                      Action
-North  | South  | East   | West   | Current |          
-Empty  | Empty  | Empty  | Empty  | Empty   | Move North
-Empty  | Empty  | Empty  | Empty  | Can     | Move East
-Empty  | Empty  | Empty  | Empty  | Wall    | Move Random
-Empty  | Empty  | Empty  | Can    | Empty   | Pick Up Can
-...
-Empty  | Empty  | Can    | Wall   | Empty   | Move West
-...
-Wall   | Wall   | Wall   | Wall   | Wall    | Stay Put
+	                Situation                      Action
+	North  | South  | East   | West   | Current |          
+	Empty  | Empty  | Empty  | Empty  | Empty   | Move North    
+	Empty  | Empty  | Empty  | Empty  | Can     | Move East    
+	Empty  | Empty  | Empty  | Empty  | Wall    | Move Random     
+	Empty  | Empty  | Empty  | Can    | Empty   | Pick Up Can    
+	...
+	Empty  | Empty  | Can    | Wall   | Empty   | Move West
+	...
+	Wall   | Wall   | Wall   | Wall   | Wall    | Stay Put
 
 I never said that the above is a _good_ strategy. Finding a good strategy isn't our job; It's the job of the genetic
  algorithm.
@@ -86,8 +86,8 @@ Empty Empty Can"), and so on. In other words, we don't have to explicitly list t
  actions; instead the GA remembers the order in which they are listed. For example, suppose Robby happened to 
  observe that he was in the following situation: 
  
-North  | South  | East   | West   | Current |          
-Empty  | Empty  | Empty  | Empty  | Can     | 
+	North  | South  | East   | West   | Current |          
+	Empty  | Empty  | Empty  | Empty  | Can     | 
 
 We build into the GA the knowledge that this is situation number 2. It would look at the strategy table and see that 
 the action in position 2 is "Move East". Robby moves east, and then observes his next situation; the GA again looks 
@@ -124,8 +124,6 @@ is its average score over 100 different cleaning sessions, each of which has a d
 **Individual examples (strategies genome):**
  
 **Individual 1:** 3452365464324543654....45363534543 (up to 243 characters)
-**Individual 1:** 3452365464324543654....45363534543 (up to 243 characters)
- 
 **Individual 2:** 4356353453245634321....12342345312 (up to 243 characters)
 
 ...
