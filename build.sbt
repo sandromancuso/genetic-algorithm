@@ -1,5 +1,5 @@
 organization := "com.codurance"
-name := "genetic-algorithm"
+name := "treasure-hunting"
 
 version := "1.0"
 scalaVersion := "2.11.8"
