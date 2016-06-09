@@ -9,13 +9,13 @@ class RandomIndividualGeneratorShould extends UnitSpec {
 	"generate a random individual with a string representation of 243 chars" in {
 		val individual = randomIndividualGenerator generate()
 
-		individual.representation.length should be(243)
+		individual.actions.size should be(243)
 	}
 
 	"generate a random individual with a string of 243 chars where each one is between 0 and 6" in {
 		val individual = randomIndividualGenerator generate()
 
-		all (individual.representation map(a => a.id)) should (be >= 0 and be <= Action.maxId)
+		all (individual.actions map(a => a.id)) should (be >= 0 and be <= Action.maxId)
 	}
 
 	"generate different random individuals each time" in {
