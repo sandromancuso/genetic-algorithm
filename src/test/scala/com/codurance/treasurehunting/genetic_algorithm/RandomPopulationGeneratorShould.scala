@@ -6,9 +6,9 @@ import org.mockito.BDDMockito.given
 
 class RandomPopulationGeneratorShould extends UnitSpec {
 
-	val INDIVIDUAL_1 = new Individual
-	val INDIVIDUAL_2 = new Individual
-	val INDIVIDUAL_3 = new Individual
+	val INDIVIDUAL_1 = new Individual(Seq(RandomAction.next()))
+	val INDIVIDUAL_2 = new Individual(Seq(RandomAction.next()))
+	val INDIVIDUAL_3 = new Individual(Seq(RandomAction.next()))
 	val THREE_INDIVIDUALS = 3
 
 	val RANDOM_INDIVIDUALS = List(INDIVIDUAL_1, INDIVIDUAL_2, INDIVIDUAL_3)
