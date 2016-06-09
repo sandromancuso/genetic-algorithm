@@ -1,9 +1,7 @@
 package com.codurance.treasurehunting.genetic_algorithm
 
 import com.codurance.UnitSpec
-import org.mockito.BDDMockito
 import org.mockito.BDDMockito.given
-import org.mockito.Mockito.verify
 
 class TreasureHuntingGAShould extends UnitSpec {
 
