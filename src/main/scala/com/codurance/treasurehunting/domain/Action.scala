@@ -1,4 +1,4 @@
-package com.codurance.treasurehunting.genetic_algorithm
+package com.codurance.treasurehunting.domain
 
 import scala.util.Random
 

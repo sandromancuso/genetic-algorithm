@@ -1,6 +1,9 @@
 package com.codurance.treasurehunting.genetic_algorithm
 
 import com.codurance.UnitSpec
+import com.codurance.treasurehunting.domain.{Individual, Population, RandomAction}
+import com.codurance.treasurehunting.genetic_algorithm.evolution.Evolution
+import com.codurance.treasurehunting.genetic_algorithm.initial_population.RandomPopulationGenerator
 import org.mockito.BDDMockito.given
 
 class TreasureHuntingGAShould extends UnitSpec {

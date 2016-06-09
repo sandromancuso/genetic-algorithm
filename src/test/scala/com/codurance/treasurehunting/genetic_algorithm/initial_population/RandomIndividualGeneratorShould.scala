@@ -1,6 +1,7 @@
-package com.codurance.treasurehunting.genetic_algorithm
+package com.codurance.treasurehunting.genetic_algorithm.initial_population
 
 import com.codurance.UnitSpec
+import com.codurance.treasurehunting.domain.Action
 
 class RandomIndividualGeneratorShould extends UnitSpec {
 

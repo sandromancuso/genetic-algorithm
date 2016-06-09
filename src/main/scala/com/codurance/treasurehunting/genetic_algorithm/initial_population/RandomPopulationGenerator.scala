@@ -1,4 +1,6 @@
-package com.codurance.treasurehunting.genetic_algorithm
+package com.codurance.treasurehunting.genetic_algorithm.initial_population
+
+import com.codurance.treasurehunting.domain.Population
 
 class RandomPopulationGenerator(randomIndividualGenerator: RandomIndividualGenerator) {
 
