@@ -1,7 +1,8 @@
 package com.codurance.treasurehunting.genetic_algorithm
 
-class Population {
+case class Population(individuals: Individual*) {
 
 	def fittestIndividual(): Individual = ???
 
 }
+
