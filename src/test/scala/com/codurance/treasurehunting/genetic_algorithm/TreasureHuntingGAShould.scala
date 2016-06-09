@@ -7,14 +7,15 @@ import org.mockito.Mockito.verify
 
 class TreasureHuntingGAShould extends UnitSpec {
 
-	val TWO_HUNDRED_INDIVIDUALS = List[Individual]()
-	val TWO_HUNDRED_FIT_INDIVIDUALS = List[FitIndividual]()
+	val POPULATION_OF_200_INDIVIDUALS = new Population
+	val FIT_POPULATION = new Population
+	val TWO_HUNDRED_INDIVIDUALS = 200
 
 	trait context {
-		val randomIndividualGenerator = mock[RandomIndividualGenerator]
+		val randomPopulationGenerator = mock[RandomPopulationGenerator]
 		val fitnessCalculator = mock[FitnessCalculator]
 		val evolution = mock[Evolution]
-		val treasureHuntingGA = new TreasureHuntingGA(randomIndividualGenerator,
+		val treasureHuntingGA = new TreasureHuntingGA(randomPopulationGenerator,
 														fitnessCalculator,
 														evolution)
 	}
@@ -22,24 +23,24 @@ class TreasureHuntingGAShould extends UnitSpec {
 	"generate 200 random individuals at start" in new context {
 		treasureHuntingGA generateFittestIndividual()
 
-		verify(randomIndividualGenerator) generate 200
+		verify(randomPopulationGenerator) populationWith TWO_HUNDRED_INDIVIDUALS
 	}
 
 	"calculate the fitness for each individual" in new context {
-		given(randomIndividualGenerator generate 200) willReturn TWO_HUNDRED_INDIVIDUALS
+		given(randomPopulationGenerator populationWith TWO_HUNDRED_INDIVIDUALS) willReturn POPULATION_OF_200_INDIVIDUALS
 
 		treasureHuntingGA generateFittestIndividual()
 
-		verify(fitnessCalculator) calculateFitnessForEach TWO_HUNDRED_INDIVIDUALS
+		verify(fitnessCalculator) calculateFitnessFor POPULATION_OF_200_INDIVIDUALS
 	}
 
 	"evolve initial population" in new context {
-		given(randomIndividualGenerator generate 200) willReturn TWO_HUNDRED_INDIVIDUALS
-		given(fitnessCalculator calculateFitnessForEach TWO_HUNDRED_INDIVIDUALS) willReturn TWO_HUNDRED_FIT_INDIVIDUALS
+		given(randomPopulationGenerator populationWith TWO_HUNDRED_INDIVIDUALS) willReturn POPULATION_OF_200_INDIVIDUALS
+		given(fitnessCalculator calculateFitnessFor POPULATION_OF_200_INDIVIDUALS) willReturn FIT_POPULATION
 
 		treasureHuntingGA generateFittestIndividual()
 
-		verify(evolution) nextGenerationFor TWO_HUNDRED_FIT_INDIVIDUALS
+		verify(evolution) nextGenerationFor FIT_POPULATION
 
 	}
 
