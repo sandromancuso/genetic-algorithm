@@ -1,17 +1,14 @@
 package com.codurance.treasurehunting.genetic_algorithm
 
 class TreasureHuntingGA(randomPopulationGenerator: RandomPopulationGenerator,
-                        evolution: Evolution) {
+                        evolution: Evolution,
+                        numberOfIndividuals: Int) {
 
-	def generateFittestIndividual(): Unit = {
-		val initialPopulation = randomPopulationGenerator populationWith(200)
+	def generateFittestIndividual(): Individual = {
+		val initialPopulation = randomPopulationGenerator populationWith numberOfIndividuals
+		val evolvedPopulation = evolution nextGenerationsFor initialPopulation
 
-		evolution nextGenerationsFor initialPopulation
-
-		// At this point, I think I should move the FitnessCalculator
-		// to Evolution. Evolution should receive the initial population
-		// and evolve it (calculate the next generations) according to the
-		// number of generations specified somewhere (param?).
+		evolvedPopulation fittestIndividual()
 	}
 
 }

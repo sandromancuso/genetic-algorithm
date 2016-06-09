@@ -9,26 +9,25 @@ class TreasureHuntingGAShould extends UnitSpec {
 
 	val INITIAL_POPULATION = new Population
 	val FIT_POPULATION = new Population
+	val FITTEST_INDIVIDUAL = new Individual
 	val TWO_HUNDRED_INDIVIDUALS = 200
 
 	trait context {
 		val randomPopulationGenerator = mock[RandomPopulationGenerator]
 		val evolution = mock[Evolution]
-		val treasureHuntingGA = new TreasureHuntingGA(randomPopulationGenerator, evolution)
+		val evolvedPopulation = mock[Population]
+		val treasureHuntingGA = new TreasureHuntingGA(randomPopulationGenerator, evolution, TWO_HUNDRED_INDIVIDUALS)
 	}
 
-	"generate 200 random individuals at start" in new context {
-		treasureHuntingGA generateFittestIndividual()
-
-		verify(randomPopulationGenerator) populationWith TWO_HUNDRED_INDIVIDUALS
-	}
-
-	"evolve initial population" in new context {
+	"return the fittest individual after evolutions of initial population" in new context {
 		given(randomPopulationGenerator populationWith TWO_HUNDRED_INDIVIDUALS) willReturn INITIAL_POPULATION
+		given(evolution nextGenerationsFor INITIAL_POPULATION) willReturn evolvedPopulation
+		given(evolvedPopulation fittestIndividual()) willReturn FITTEST_INDIVIDUAL
 
-		treasureHuntingGA generateFittestIndividual()
+		val fittestIndividual = treasureHuntingGA generateFittestIndividual()
 
-		verify(evolution) nextGenerationsFor INITIAL_POPULATION
+		fittestIndividual should be(FITTEST_INDIVIDUAL)
+
 	}
 
 }
