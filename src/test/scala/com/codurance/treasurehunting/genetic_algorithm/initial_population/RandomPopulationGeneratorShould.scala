@@ -20,7 +20,7 @@ class RandomPopulationGeneratorShould extends UnitSpec {
 
 	"generate a population of random individuals" in new context {
 		given(randomIndividualGenerator generate())
-				.willReturn (INDIVIDUAL_1, INDIVIDUAL_2, INDIVIDUAL_3)
+				.willReturn (RANDOM_INDIVIDUALS.head, RANDOM_INDIVIDUALS.tail: _*)
 
 		val population = randomPopulationGenerator populationWith THREE_INDIVIDUALS
 
