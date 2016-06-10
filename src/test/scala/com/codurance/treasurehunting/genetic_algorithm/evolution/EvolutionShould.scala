@@ -20,14 +20,14 @@ class EvolutionShould extends UnitSpec {
 	trait context {
 		val gaConfig = new GAConfig(generations = 2)
 		val generation = mock[Generation]
-		val fitnessCalculator = mock[PopulationFitnessCalculator]
-		val evolution = new Evolution(gaConfig, fitnessCalculator, generation)
+		val populationFitnessCalculator = mock[PopulationFitnessCalculator]
+		val evolution = new Evolution(gaConfig, populationFitnessCalculator, generation)
 	}
 
 	"evolve initial population until the last generation specified in the GA configuration" in new context {
-		given(fitnessCalculator calculateFitnessFor FIRST_GENERATION) willReturn FIT_FIRST_GENERATION
-		given(fitnessCalculator calculateFitnessFor SECOND_GENERATION) willReturn FIT_SECOND_GENERATION
-		given(fitnessCalculator calculateFitnessFor THIRD_GENERATION) willReturn FIT_THIRD_GENERATION
+		given(populationFitnessCalculator calculateFitnessFor FIRST_GENERATION) willReturn FIT_FIRST_GENERATION
+		given(populationFitnessCalculator calculateFitnessFor SECOND_GENERATION) willReturn FIT_SECOND_GENERATION
+		given(populationFitnessCalculator calculateFitnessFor THIRD_GENERATION) willReturn FIT_THIRD_GENERATION
 
 		given(generation next FIT_FIRST_GENERATION) willReturn SECOND_GENERATION
 		given(generation next FIT_SECOND_GENERATION) willReturn THIRD_GENERATION
