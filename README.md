@@ -33,7 +33,7 @@ Walls.
 
 ## Actions
 
-For each cleaning session, Indy can perform exactly 200 actions. Each action consists of one of the following 
+For each treasure hunting session, Indy can perform exactly 200 actions. Each action consists of one of the following 
 seven choices:
  
 * Move North 
@@ -135,10 +135,10 @@ In the initial population, these numbers are randomly generated. Repeat the foll
 ### 2. Calculate the fitness of each individual in the population. 
 
 In this algorithm, the fitness of a strategy is determined by seeing how well the strategy lets Indy do on 100 
-different **cleaning sessions**. A cleaning session consists of putting Indy at site 0,0, and throwing down a bunch 
+different **treasure hunting sessions**. A treasure hunting session consists of putting Indy at site 0,0, and throwing down a bunch 
 of treasures at random. Indy then follows the strategy for 200 actions in each session. The score of the strategy in each
 session is the number of rewarding points Indy accumulates minus punishments. The strategy fitness is its average 
-score over 100 different cleaning sessions, each of which has a different configuration of treasures. 
+score over 100 different treasure hunting sessions, each of which has a different configuration of treasures. 
 
 **Individual examples (strategies genome):**
  
@@ -177,7 +177,7 @@ The numbers we are using in this exercise are:
 * Population: 200
 * Generations: 1000
 * Number of actions Indy can take in a session: 200
-* Number of cleaning sessions to calculate fitness: 100
+* Number of treasure hunting sessions to calculate fitness: 100
  
 These numbers are arbitrary. Other numbers can be used. 
  
@@ -192,10 +192,10 @@ Imagine the following strategy:
 
 This strategy is not that smart since it can make Indy get stuck cycling around empty sites. 
 
-[Melanie Mitchell](https://en.wikipedia.org/wiki/Melanie_Mitchell) tested this strategy on 10,000 cleaning sessions, 
+[Melanie Mitchell](https://en.wikipedia.org/wiki/Melanie_Mitchell) tested this strategy on 10,000 treasure hunting sessions, 
 and found that its average (per-session) score was 346. Given that at the beginning of each session, about 50%, or 50, 
 of the sites contain a treasure, the maximum possible score for any strategy is approximately 500. 
 
 After selecting the highest-fitness individual in the final generation, and also testing it on 10,000 new and 
- different cleaning sessions, its average (per-session) was approximately 483—that is, nearly optimal. 
+ different treasure hunting sessions, its average (per-session) was approximately 483—that is, nearly optimal. 
  

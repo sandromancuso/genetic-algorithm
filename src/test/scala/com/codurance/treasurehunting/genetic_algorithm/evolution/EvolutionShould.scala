@@ -20,7 +20,7 @@ class EvolutionShould extends UnitSpec {
 	trait context {
 		val gaConfig = new GAConfig(generations = 2)
 		val generation = mock[Generation]
-		val fitnessCalculator = mock[FitnessCalculator]
+		val fitnessCalculator = mock[PopulationFitnessCalculator]
 		val evolution = new Evolution(gaConfig, fitnessCalculator, generation)
 	}
 
