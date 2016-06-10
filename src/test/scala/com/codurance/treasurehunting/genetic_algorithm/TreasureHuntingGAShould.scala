@@ -22,7 +22,7 @@ class TreasureHuntingGAShould extends UnitSpec {
 
 	"return the fittest individual after evolutions of initial population" in new context {
 		given(randomPopulationGenerator populationWith TWO_HUNDRED_INDIVIDUALS) willReturn INITIAL_POPULATION
-		given(evolution nextGenerationsFor INITIAL_POPULATION) willReturn evolvedPopulation
+		given(evolution evolve INITIAL_POPULATION) willReturn evolvedPopulation
 		given(evolvedPopulation fittestIndividual()) willReturn FITTEST_INDIVIDUAL
 
 		val fittestIndividual = treasureHuntingGA generateFittestIndividual()

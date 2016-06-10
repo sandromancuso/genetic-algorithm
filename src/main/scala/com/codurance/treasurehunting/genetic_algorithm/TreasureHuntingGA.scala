@@ -10,7 +10,7 @@ class TreasureHuntingGA(randomPopulationGenerator: RandomPopulationGenerator,
 
 	def generateFittestIndividual(): Individual = {
 		val initialPopulation = randomPopulationGenerator populationWith numberOfIndividuals
-		val evolvedPopulation = evolution nextGenerationsFor initialPopulation
+		val evolvedPopulation = evolution evolve initialPopulation
 
 		evolvedPopulation fittestIndividual()
 	}

@@ -3,13 +3,15 @@ package com.codurance.treasurehunting.genetic_algorithm.evolution
 import com.codurance.treasurehunting.domain.Population
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 
-class Evolution(gaConfig: GAConfig, fitnessCalculator: FitnessCalculator) {
+class Evolution(gaConfig: GAConfig, fitnessCalculator: FitnessCalculator, generation: Generation) {
 
-	def nextGenerationsFor(population: Population): Population = {
-		var evolvedPopulation = population
+	def evolve(population: Population): Population = {
+		var unfitPopulation = population
+		var fitPopulation = fitnessCalculator calculateFitnessFor unfitPopulation
 		1 to gaConfig.generations foreach { n =>
-			evolvedPopulation = fitnessCalculator calculateFitnessFor(evolvedPopulation)
+			unfitPopulation = generation next fitPopulation
+			fitPopulation = fitnessCalculator calculateFitnessFor unfitPopulation
 		}
-		evolvedPopulation
+		fitPopulation
 	}
 }

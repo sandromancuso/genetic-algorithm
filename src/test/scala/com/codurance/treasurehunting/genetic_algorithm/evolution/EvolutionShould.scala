@@ -1,41 +1,40 @@
 package com.codurance.treasurehunting.genetic_algorithm.evolution
 
 import com.codurance.UnitSpec
-import com.codurance.treasurehunting.domain.Action.{MOVE_EAST, MOVE_NORTH, PICK_UP_TREASURE}
-import com.codurance.treasurehunting.domain.{Individual, Population}
+import com.codurance.treasurehunting.domain.Action._
+import com.codurance.treasurehunting.domain.{Action, Individual, Population}
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito.verify
 
 class EvolutionShould extends UnitSpec {
 
-	val INITIAL_POPULATION = Population(Individual(Seq(MOVE_NORTH)))
-	val FIRST_GENERATION   = Population(Individual(Seq(MOVE_EAST)))
-	val SECOND_GENERATION  = Population(Individual(Seq(PICK_UP_TREASURE)))
+	val FIRST_GENERATION  = Population(Individual(Seq(MOVE_NORTH)))
+	val SECOND_GENERATION = Population(Individual(Seq(MOVE_EAST)))
+	val THIRD_GENERATION  = Population(Individual(Seq(PICK_UP_TREASURE)))
+
+	val FIT_FIRST_GENERATION  = Population(Individual(Seq(MOVE_WEST)))
+	val FIT_SECOND_GENERATION = Population(Individual(Seq(MOVE_SOUTH)))
+	val FIT_THIRD_GENERATION  = Population(Individual(Seq(STAY_PUT)))
 
 	trait context {
 		val gaConfig = new GAConfig(generations = 2)
+		val generation = mock[Generation]
 		val fitnessCalculator = mock[FitnessCalculator]
-		val evolution = new Evolution(gaConfig, fitnessCalculator)
+		val evolution = new Evolution(gaConfig, fitnessCalculator, generation)
 	}
 
-	"calculate fitness of populations according to the number of generations" in new context {
-		given(fitnessCalculator calculateFitnessFor(INITIAL_POPULATION)) willReturn(FIRST_GENERATION)
-		given(fitnessCalculator calculateFitnessFor(FIRST_GENERATION)) willReturn(SECOND_GENERATION)
+	"evolve initial population until the last generation specified in the GA configuration" in new context {
+		given(fitnessCalculator calculateFitnessFor FIRST_GENERATION) willReturn FIT_FIRST_GENERATION
+		given(fitnessCalculator calculateFitnessFor SECOND_GENERATION) willReturn FIT_SECOND_GENERATION
+		given(fitnessCalculator calculateFitnessFor THIRD_GENERATION) willReturn FIT_THIRD_GENERATION
 
-		evolution nextGenerationsFor INITIAL_POPULATION
+		given(generation next FIT_FIRST_GENERATION) willReturn SECOND_GENERATION
+		given(generation next FIT_SECOND_GENERATION) willReturn THIRD_GENERATION
 
-		verify(fitnessCalculator) calculateFitnessFor(INITIAL_POPULATION)
-		verify(fitnessCalculator) calculateFitnessFor(FIRST_GENERATION)
-	}
+		val lastGeneration = evolution evolve FIRST_GENERATION
 
-	"return the last generation according to the number of generations to be evolved" in new context {
-		given(fitnessCalculator calculateFitnessFor(INITIAL_POPULATION)) willReturn(FIRST_GENERATION)
-		given(fitnessCalculator calculateFitnessFor(FIRST_GENERATION)) willReturn(SECOND_GENERATION)
-
-		val evolvedGeneration = evolution nextGenerationsFor INITIAL_POPULATION
-
-		evolvedGeneration should be(SECOND_GENERATION)
+		lastGeneration should be(FIT_THIRD_GENERATION)
 	}
 
 }
