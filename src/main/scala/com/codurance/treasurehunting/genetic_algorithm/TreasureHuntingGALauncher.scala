@@ -1,8 +1,8 @@
 package com.codurance.treasurehunting.genetic_algorithm
 
-import com.codurance.treasurehunting.genetic_algorithm.evolution.{IndividualFitnessCalculator, Generation, PopulationFitnessCalculator, Evolution}
+import com.codurance.treasurehunting.genetic_algorithm.evolution.{Evolution, Generation, IndividualFitnessCalculator, PopulationFitnessCalculator}
 import com.codurance.treasurehunting.genetic_algorithm.initial_population.{RandomIndividualGenerator, RandomPopulationGenerator}
-import com.codurance.treasurehunting.genetic_algorithm.map.TreasureMapGenerator
+import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureGenerator, TreasureMapGenerator}
 
 object TreasureHuntingGALauncher extends App {
 
@@ -11,7 +11,8 @@ object TreasureHuntingGALauncher extends App {
 	val randomIndividualGenerator = new RandomIndividualGenerator()
 	val randomPopulationGenerator = new RandomPopulationGenerator(randomIndividualGenerator)
 
-	val treasureMapGenerator = new TreasureMapGenerator()
+	val treasureGenerator = new TreasureGenerator(gaConfig)
+	val treasureMapGenerator = new TreasureMapGenerator(gaConfig, treasureGenerator)
 
 	val individualFitnessCalculator = new IndividualFitnessCalculator(gaConfig, treasureMapGenerator)
 	val populationFitnessCalculator = new PopulationFitnessCalculator(individualFitnessCalculator)

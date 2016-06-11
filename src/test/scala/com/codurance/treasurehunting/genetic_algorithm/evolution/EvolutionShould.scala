@@ -2,10 +2,9 @@ package com.codurance.treasurehunting.genetic_algorithm.evolution
 
 import com.codurance.UnitSpec
 import com.codurance.treasurehunting.domain.Action._
-import com.codurance.treasurehunting.domain.{Action, Individual, Population}
+import com.codurance.treasurehunting.domain.{Individual, Population}
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 import org.mockito.BDDMockito.given
-import org.mockito.Mockito.verify
 
 class EvolutionShould extends UnitSpec {
 

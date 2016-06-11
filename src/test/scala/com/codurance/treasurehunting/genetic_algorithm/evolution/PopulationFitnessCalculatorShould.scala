@@ -1,9 +1,8 @@
 package com.codurance.treasurehunting.genetic_algorithm.evolution
 
 import com.codurance.UnitSpec
-import com.codurance.treasurehunting.domain.Action.{MOVE_SOUTH, MOVE_NORTH}
-import com.codurance.treasurehunting.domain.{Population, Action, Individual}
-import org.mockito.BDDMockito
+import com.codurance.treasurehunting.domain.Action.{MOVE_NORTH, MOVE_SOUTH}
+import com.codurance.treasurehunting.domain.{Individual, Population}
 import org.mockito.BDDMockito.given
 
 class PopulationFitnessCalculatorShould extends UnitSpec {

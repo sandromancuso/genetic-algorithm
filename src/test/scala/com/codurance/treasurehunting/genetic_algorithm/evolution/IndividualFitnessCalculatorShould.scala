@@ -2,10 +2,9 @@ package com.codurance.treasurehunting.genetic_algorithm.evolution
 
 import com.codurance.UnitSpec
 import com.codurance.treasurehunting.domain.Action.MOVE_NORTH
-import com.codurance.treasurehunting.domain.{Action, Individual, Population}
+import com.codurance.treasurehunting.domain.Individual
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMap, TreasureMapGenerator}
-import org.mockito.BDDMockito
 import org.mockito.BDDMockito.given
 
 class IndividualFitnessCalculatorShould extends UnitSpec {

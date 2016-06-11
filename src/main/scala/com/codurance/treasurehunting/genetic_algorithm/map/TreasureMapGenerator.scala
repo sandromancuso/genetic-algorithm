@@ -1,7 +1,16 @@
 package com.codurance.treasurehunting.genetic_algorithm.map
 
-class TreasureMapGenerator {
+import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 
-	def next(): TreasureMap = ???
+class TreasureMapGenerator(gaConfig: GAConfig, treasureGenerator: TreasureGenerator) {
+
+	def next(): TreasureMap = TreasureMap(dimension = gaConfig.treasureMapDimension,
+										  treasures = treasureGenerator randomTreasures())
+
+}
+
+class TreasureGenerator(gaConfig: GAConfig) {
+
+	def randomTreasures(): Seq[Treasure] = ???
 
 }
