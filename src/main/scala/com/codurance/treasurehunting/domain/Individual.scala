@@ -7,3 +7,4 @@ case class Individual(actions: Seq[Action.Value], fitness: Int = Int.MinValue) {
 
 }
 
+case class Situation()

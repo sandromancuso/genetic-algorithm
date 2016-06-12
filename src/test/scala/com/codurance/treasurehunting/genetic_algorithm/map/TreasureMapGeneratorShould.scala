@@ -25,7 +25,7 @@ class TreasureMapGeneratorShould extends UnitSpec {
 
 	 	val treasureMap = treasureMapGenerator next()
 
-		treasureMap.treasures.length should be(treasures)
+		treasureMap.treasures should be(treasures)
 	}
 
 }

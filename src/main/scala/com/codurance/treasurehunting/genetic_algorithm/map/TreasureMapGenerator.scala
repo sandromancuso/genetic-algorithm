@@ -1,5 +1,6 @@
 package com.codurance.treasurehunting.genetic_algorithm.map
 
+import com.codurance.treasurehunting.domain.Site
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 
 import scala.collection.mutable
