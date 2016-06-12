@@ -1,6 +1,7 @@
 package com.codurance.treasurehunting.genetic_algorithm.map
 
 import com.codurance.UnitSpec
+import com.codurance.treasurehunting.domain.SiteState.{EMPTY, WALL}
 import com.codurance.treasurehunting.domain.{SiteState, Situation, Individual}
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
@@ -22,11 +23,11 @@ class TreasureMapShould extends UnitSpec {
 
 	"get individual action for initial situation (0,0)" in new context {
 		val emptyTreasureMap = TreasureMap()
-		val initialSituation = Situation(north = SiteState.WALL,
-										south = SiteState.EMPTY,
-										east = SiteState.EMPTY,
-										west = SiteState.WALL,
-										current = SiteState.EMPTY)
+		val initialSituation = Situation(north   = WALL,
+									 	 south   = EMPTY,
+										 east    = EMPTY,
+										 west    = WALL,
+										 current = EMPTY)
 
 		emptyTreasureMap fitnessFor UNFIT_INDIVIDUAL
 
