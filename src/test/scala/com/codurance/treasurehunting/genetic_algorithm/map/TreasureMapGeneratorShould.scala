@@ -14,6 +14,9 @@ class TreasureMapGeneratorShould extends UnitSpec {
 	}
 
 	"create a map according to the dimensions specified in the GA configuration" in new context {
+		val treasures = Seq(Treasure(), Treasure())
+		given(treasureGenerator randomTreasures()) willReturn(treasures)
+
 		val treasureMap = treasureMapGenerator next()
 
 		treasureMap.dimension should be(gaConfig.treasureMapDimension)
