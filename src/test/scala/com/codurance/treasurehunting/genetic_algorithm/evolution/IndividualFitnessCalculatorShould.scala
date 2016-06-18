@@ -14,14 +14,16 @@ class IndividualFitnessCalculatorShould extends UnitSpec {
 	trait context {
 		val gaConfig = GAConfig(numberOfHuntingSessions = 3)
 		val mapGenerator = mock[TreasureMapGenerator]
+		val individualFitnessForMapCalculator = mock[IndividualFitnessForMapCalculator]
 		val treasureMap = mock[TreasureMap]
 
-		val individualFitnessCalculator = new IndividualFitnessCalculator(gaConfig, mapGenerator)
+		val individualFitnessCalculator =
+			new IndividualFitnessCalculator(gaConfig, mapGenerator, individualFitnessForMapCalculator)
 	}
 
 	"calculate average fitness for an invididual" in new context {
 		given(mapGenerator next()) willReturn treasureMap
-		given(treasureMap fitnessFor UNFIT_INDIVIDUAL) willReturn(80, 150, 70)
+		given(individualFitnessForMapCalculator calculateFitness(treasureMap, UNFIT_INDIVIDUAL)) willReturn(80, 150, 70)
 
 		val averageFitness = individualFitnessCalculator averageFitnessFor UNFIT_INDIVIDUAL
 

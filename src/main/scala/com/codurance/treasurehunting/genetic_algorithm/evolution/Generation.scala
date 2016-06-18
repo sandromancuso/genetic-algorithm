@@ -4,6 +4,6 @@ import com.codurance.treasurehunting.domain.Population
 
 class Generation {
 
-	def next(population: Population): Population = ???
+	def next(population: Population): Population = population
 
 }

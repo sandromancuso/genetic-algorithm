@@ -29,9 +29,9 @@ class StrategyShould extends UnitSpec {
 		strategy actionFor Situation(EMPTY, EMPTY, EMPTY, EMPTY, WALL)     should be (MOVE_EAST)
 		strategy actionFor Situation(EMPTY, EMPTY, EMPTY, TREASURE, EMPTY) should be (MOVE_WEST)
 		strategy actionFor Situation(EMPTY, EMPTY, EMPTY, TREASURE, TREASURE) should be (MOVE_NORTH)
-		strategy actionFor Situation(EMPTY, EMPTY, EMPTY, TREASURE, WALL)     should be (STAY_PUT)
-		strategy actionFor Situation(EMPTY, WALL, EMPTY, TREASURE, WALL)      should be (STAY_PUT)
-		strategy actionFor Situation(TREASURE, WALL, EMPTY, TREASURE, EMPTY)  should be (STAY_PUT)
+		strategy actionFor Situation(EMPTY, EMPTY, EMPTY, TREASURE, WALL)     should be (PICK_UP_TREASURE)
+		strategy actionFor Situation(EMPTY, WALL, EMPTY, TREASURE, WALL)      should be (RANDOM_MOVE)
+		strategy actionFor Situation(TREASURE, WALL, EMPTY, TREASURE, EMPTY)  should be (PICK_UP_TREASURE)
 	}
 
 }

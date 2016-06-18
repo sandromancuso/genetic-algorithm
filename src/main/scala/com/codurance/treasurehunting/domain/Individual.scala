@@ -2,7 +2,8 @@ package com.codurance.treasurehunting.domain
 
 import scala.collection.mutable
 
-case class Individual(actions: Seq[Action.Value], fitness: Int = Int.MinValue) {
+case class Individual(actions: Seq[Action.Value], fitness: Int = Int.MinValue)
+	extends Ordered[Individual] {
 
 	val strategy = Strategy(actions)
 
@@ -11,6 +12,7 @@ case class Individual(actions: Seq[Action.Value], fitness: Int = Int.MinValue) {
 
 	def actionFor(situation: Situation) = strategy actionFor situation
 
+	override def compare(that: Individual): Int = (fitness) compare (that.fitness)
 }
 
 case class Situation(north: SiteState.Value,
@@ -29,7 +31,7 @@ case class Strategy(actions: Seq[Action.Value]) {
 
 		val actionsIterator = actions.iterator
 
-		def nextAction() = if (actionsIterator.hasNext) actionsIterator.next() else Action.STAY_PUT
+		def nextAction() = if (actionsIterator.hasNext) actionsIterator.next() else RandomAction.next()
 
 		val numberOfSiteStates = SiteState.values.size
 		val situationActionMap = mutable.Map[Situation, Action.Value]()
