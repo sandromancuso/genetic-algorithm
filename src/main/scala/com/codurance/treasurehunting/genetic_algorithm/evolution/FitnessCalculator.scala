@@ -1,8 +1,12 @@
 package com.codurance.treasurehunting.genetic_algorithm.evolution
 
+import java.util.concurrent.atomic.AtomicInteger
+
 import com.codurance.treasurehunting.domain.{Action, Site, Individual, Population}
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
 import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureHuntingSession, TreasureMap, TreasureMapGenerator}
+
+import scala.collection.mutable
 
 class PopulationFitnessCalculator(individualFitnessCalculator: IndividualFitnessCalculator) {
 
@@ -21,20 +25,19 @@ class PopulationFitnessCalculator(individualFitnessCalculator: IndividualFitness
 
 }
 
-class IndividualFitnessCalculator(gaConfig: GAConfig,
+class IndividualFitnessCalculator(numberOfHuntingSessions: Int,
                                   mapGenerator: TreasureMapGenerator,
                                   individualFitnessForMapCalculator: IndividualFitnessForMapCalculator) {
 
 	def averageFitnessFor(individual: Individual): Int = {
-		var fitnessList: List[Int] = List()
+		val fitness = new AtomicInteger(0)
 
-		(1 to gaConfig.numberOfHuntingSessions).par foreach { _ =>
+		(1 to numberOfHuntingSessions).par foreach { _ =>
 			val map = mapGenerator next()
-			fitnessList = fitnessList :+ individualFitnessForMapCalculator.calculateFitness(map, individual)
+			fitness.addAndGet(individualFitnessForMapCalculator.calculateFitness(map, individual))
 		}
 
-		val fitnessAverage: Int = fitnessList.sum / fitnessList.length
-		fitnessAverage
+		fitness.get() / numberOfHuntingSessions
 	}
 
 }

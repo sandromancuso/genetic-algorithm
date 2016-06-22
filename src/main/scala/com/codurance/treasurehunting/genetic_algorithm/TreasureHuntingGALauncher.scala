@@ -15,7 +15,8 @@ object TreasureHuntingGALauncher extends App {
 	val treasureMapGenerator = new TreasureMapGenerator(gaConfig, treasureGenerator)
 
 	val individualFitnessForMapCalculator = new IndividualFitnessForMapCalculator
-	val individualFitnessCalculator = new IndividualFitnessCalculator(gaConfig, treasureMapGenerator, individualFitnessForMapCalculator)
+	val individualFitnessCalculator = new IndividualFitnessCalculator(
+		gaConfig.numberOfHuntingSessions, treasureMapGenerator, individualFitnessForMapCalculator)
 	val populationFitnessCalculator = new PopulationFitnessCalculator(individualFitnessCalculator)
 	val generation = new Generation()
 	val evolution = new Evolution(gaConfig, populationFitnessCalculator, generation)
