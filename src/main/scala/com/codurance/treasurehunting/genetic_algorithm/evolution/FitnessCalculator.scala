@@ -2,7 +2,7 @@ package com.codurance.treasurehunting.genetic_algorithm.evolution
 
 import com.codurance.treasurehunting.domain.{Action, Site, Individual, Population}
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
-import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMap, TreasureMapGenerator}
+import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureHuntingSession, TreasureMap, TreasureMapGenerator}
 
 class PopulationFitnessCalculator(individualFitnessCalculator: IndividualFitnessCalculator) {
 
@@ -42,6 +42,6 @@ class IndividualFitnessCalculator(gaConfig: GAConfig,
 class IndividualFitnessForMapCalculator {
 
 	def calculateFitness(treasureMap: TreasureMap, individual: Individual): Int =
-		treasureMap fitnessFor individual
+		new TreasureHuntingSession(treasureMap, individual).run()
 
 }

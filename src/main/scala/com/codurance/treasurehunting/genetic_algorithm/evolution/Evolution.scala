@@ -13,7 +13,7 @@ class Evolution(gaConfig: GAConfig,
 			nextPopulation = generation next fitPopulation
 			fitPopulation = populationFitnessCalculator calculateFitnessFor nextPopulation
 			val stayPuts = fitPopulation.fittestIndividual().actions.count(_ == Action.STAY_PUT)
-			println(s"Generation: ${n} - Fittest: ${fitPopulation.fittestIndividual().fitness} - Stay puts: ${stayPuts}")
+			println(s"Generation: ${n} - Fittest individual: ${fitPopulation.fittestIndividual().fitness}")
 		}
 		fitPopulation
 	}
