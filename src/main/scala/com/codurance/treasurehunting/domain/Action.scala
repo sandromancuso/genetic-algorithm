@@ -10,5 +10,8 @@ object Action extends Enumeration {
 }
 
 object RandomAction {
-	def next(): Action.Value = Action(Random.nextInt(Action.maxId))
+	def next(): Action.Value = {
+		val action = Action(Random.nextInt(Action.maxId))
+		if (action != Action.STAY_PUT) action else next()
+	}
 }

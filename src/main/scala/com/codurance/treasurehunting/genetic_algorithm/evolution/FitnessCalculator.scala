@@ -16,7 +16,6 @@ class PopulationFitnessCalculator(individualFitnessCalculator: IndividualFitness
 		}
 
 		val fitPopulation = Population(fitIndividuals: _*)
-		println(s"Fittest individual in population: ${population.fittestIndividual().fitness}")
 		fitPopulation
 	}
 
@@ -29,7 +28,7 @@ class IndividualFitnessCalculator(gaConfig: GAConfig,
 	def averageFitnessFor(individual: Individual): Int = {
 		var fitnessList: List[Int] = List()
 
-		1 to gaConfig.numberOfHuntingSessions foreach { _ =>
+		(1 to gaConfig.numberOfHuntingSessions).par foreach { _ =>
 			val map = mapGenerator next()
 			fitnessList = fitnessList :+ individualFitnessForMapCalculator.calculateFitness(map, individual)
 		}

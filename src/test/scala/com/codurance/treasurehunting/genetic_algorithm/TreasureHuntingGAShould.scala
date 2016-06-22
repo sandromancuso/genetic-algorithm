@@ -10,7 +10,7 @@ class TreasureHuntingGAShould extends UnitSpec {
 
 	val INITIAL_POPULATION = new Population
 	val FIT_POPULATION = new Population
-	val FITTEST_INDIVIDUAL = new Individual(Seq(RandomAction.next()))
+	val FITTEST_INDIVIDUAL = new Individual(actions = Seq(RandomAction.next()))
 	val TWO_HUNDRED_INDIVIDUALS = 200
 
 	trait context {

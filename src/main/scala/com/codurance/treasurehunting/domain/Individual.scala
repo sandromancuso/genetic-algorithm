@@ -2,7 +2,7 @@ package com.codurance.treasurehunting.domain
 
 import scala.collection.mutable
 
-case class Individual(actions: Seq[Action.Value], fitness: Int = Int.MinValue)
+case class Individual(fitness: Int = Int.MinValue, actions: Seq[Action.Value])
 	extends Ordered[Individual] {
 
 	val strategy = Strategy(actions)

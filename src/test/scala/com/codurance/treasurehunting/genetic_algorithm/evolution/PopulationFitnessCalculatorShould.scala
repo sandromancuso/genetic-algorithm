@@ -7,8 +7,8 @@ import org.mockito.BDDMockito.given
 
 class PopulationFitnessCalculatorShould extends UnitSpec {
 
-	val UNFIT_INDIVIDUAL_1 = Individual(Seq(MOVE_NORTH), fitness = 0)
-	val UNFIT_INDIVIDUAL_2 = Individual(Seq(MOVE_SOUTH), fitness = -10)
+	val UNFIT_INDIVIDUAL_1 = Individual(0, Seq(MOVE_NORTH))
+	val UNFIT_INDIVIDUAL_2 = Individual(-10, Seq(MOVE_SOUTH))
 	val UNFIT_POPULATION = Population(UNFIT_INDIVIDUAL_1, UNFIT_INDIVIDUAL_2)
 
 	trait context {

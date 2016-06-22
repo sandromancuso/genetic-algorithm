@@ -8,13 +8,13 @@ import org.mockito.BDDMockito.given
 
 class EvolutionShould extends UnitSpec {
 
-	val FIRST_GENERATION  = Population(Individual(Seq(MOVE_NORTH)))
-	val SECOND_GENERATION = Population(Individual(Seq(MOVE_EAST)))
-	val THIRD_GENERATION  = Population(Individual(Seq(PICK_UP_TREASURE)))
+	val FIRST_GENERATION  = Population(Individual(actions = Seq(MOVE_NORTH)))
+	val SECOND_GENERATION = Population(Individual(actions = Seq(MOVE_EAST)))
+	val THIRD_GENERATION  = Population(Individual(actions = Seq(PICK_UP_TREASURE)))
 
-	val FIT_FIRST_GENERATION  = Population(Individual(Seq(MOVE_WEST)))
-	val FIT_SECOND_GENERATION = Population(Individual(Seq(MOVE_SOUTH)))
-	val FIT_THIRD_GENERATION  = Population(Individual(Seq(PICK_UP_TREASURE)))
+	val FIT_FIRST_GENERATION  = Population(Individual(actions = Seq(MOVE_WEST)))
+	val FIT_SECOND_GENERATION = Population(Individual(actions = Seq(MOVE_SOUTH)))
+	val FIT_THIRD_GENERATION  = Population(Individual(actions = Seq(PICK_UP_TREASURE)))
 
 	trait context {
 		val gaConfig = new GAConfig(generations = 2)
