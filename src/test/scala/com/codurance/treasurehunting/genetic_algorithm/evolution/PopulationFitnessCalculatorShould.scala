@@ -22,7 +22,7 @@ class PopulationFitnessCalculatorShould extends UnitSpec {
 
 		val fitPopulation = populationFitnessCalculator calculateFitnessFor UNFIT_POPULATION
 
-		fitPopulation.size should be (UNFIT_POPULATION.size)
+		fitPopulation.size should be (UNFIT_POPULATION.size())
 		fitPopulation.individuals should contain(Individual(80, UNFIT_INDIVIDUAL_1.actions))
 		fitPopulation.individuals should contain(Individual(60, UNFIT_INDIVIDUAL_2.actions))
 	}
