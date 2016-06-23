@@ -17,16 +17,14 @@ class PopulationFitnessCalculatorShould extends UnitSpec {
 	}
 
 	"calculate fitness for each individual in a population" in new context {
-		given(individualFitnessCalculator averageFitnessFor(UNFIT_INDIVIDUAL_1)) willReturn(80)
-		given(individualFitnessCalculator averageFitnessFor(UNFIT_INDIVIDUAL_2)) willReturn(60)
+		given(individualFitnessCalculator averageFitnessFor UNFIT_INDIVIDUAL_1) willReturn 80
+		given(individualFitnessCalculator averageFitnessFor UNFIT_INDIVIDUAL_2) willReturn 60
 
 		val fitPopulation = populationFitnessCalculator calculateFitnessFor UNFIT_POPULATION
 
-		fitPopulation.individuals(0).actions should be(UNFIT_INDIVIDUAL_1.actions)
-		fitPopulation.individuals(0).fitness should be(80)
-
-		fitPopulation.individuals(1).actions should be(UNFIT_INDIVIDUAL_2.actions)
-		fitPopulation.individuals(1).fitness should be(60)
+		fitPopulation.size should be (UNFIT_POPULATION.size)
+		fitPopulation.individuals should contain(Individual(80, UNFIT_INDIVIDUAL_1.actions))
+		fitPopulation.individuals should contain(Individual(60, UNFIT_INDIVIDUAL_2.actions))
 	}
 
 }
