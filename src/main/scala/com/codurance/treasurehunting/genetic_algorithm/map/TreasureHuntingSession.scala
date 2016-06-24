@@ -3,11 +3,10 @@ package com.codurance.treasurehunting.genetic_algorithm.map
 import com.codurance.treasurehunting.domain.Action._
 import com.codurance.treasurehunting.domain._
 
-class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual) {
+class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual, numberOfActionsToExcute: Int = 200) {
 
 	type Score = Int
 
-	val NUMBER_OF_ACTIONS_TO_EXECUTE = 200
 	var currentSite = Site(0, 0)
 
 	var score: Score = 0
@@ -15,10 +14,10 @@ class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual) {
 	def run(): Score = executeActions()
 
 	private def executeActions(): Score = {
-		0 until NUMBER_OF_ACTIONS_TO_EXECUTE foreach { a =>
+		0 until numberOfActionsToExcute foreach { a =>
 			val situation = treasureMap situationFor currentSite
 			val action = individual actionFor situation
-			execute(action, treasureMap.situationFor(currentSite))
+			execute(action, situation)
 		}
 		score
 	}
@@ -36,51 +35,53 @@ class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual) {
 	}
 
 	private def moveNorth() = {
-		val nextSite = currentSite.copy(x = currentSite.x - 1)
+		val nextSite = currentSite.copy(y = currentSite.y - 1)
 		tryMovingTo(nextSite)
 	}
 
 	private def moveSouth() = {
-		val nextSite = currentSite.copy(x = currentSite.x + 1)
-		tryMovingTo(nextSite)
-	}
-
-	private def moveEast() = {
 		val nextSite = currentSite.copy(y = currentSite.y + 1)
 		tryMovingTo(nextSite)
 	}
 
+	private def moveEast() = {
+		val nextSite = currentSite.copy(x = currentSite.x + 1)
+		tryMovingTo(nextSite)
+	}
+
 	private def moveWest() = {
-		val nextSite = currentSite.copy(y = currentSite.y - 1)
+		val nextSite = currentSite.copy(x = currentSite.x - 1)
 		tryMovingTo(nextSite)
 	}
 
 	private def tryMovingTo(site: Site) = {
 		if (treasureMap.isSiteOutOfBounds(site))
-			score += -5
+			 score = score - 5
 		else currentSite = site
 	}
 
 	private def stayPut() = {}
 
-	private def chooseRandomMove() = {
+	private def chooseRandomMove(): Unit = {
 		val randomAction = RandomAction next()
 		randomAction match {
 			case MOVE_NORTH => moveNorth()
 			case MOVE_SOUTH => moveSouth()
 			case MOVE_EAST => moveEast()
 			case MOVE_WEST => moveWest()
-			case STAY_PUT => stayPut()
 			case PICK_UP_TREASURE => pickUpTreasure()
-			case RANDOM_MOVE =>
+			case STAY_PUT | RANDOM_MOVE => chooseRandomMove()
 		}
 	}
 
 	private def pickUpTreasure() =
 		if (treasureMap.hasTreasureAt(currentSite)) {
-			score += 10
+			score = score + 10
 			treasureMap.removeTreasureAt(currentSite)
-		} else score += -1
+		} else {
+			score = score - 1
+//			chooseRandomMove()
+		}
 
 
 }

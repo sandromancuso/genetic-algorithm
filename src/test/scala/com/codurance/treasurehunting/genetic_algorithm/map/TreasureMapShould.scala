@@ -65,12 +65,15 @@ class TreasureMapShould extends UnitSpec {
 	}
 
 	"inform if a site is out of bounds" in {
-		val treasureMap = TreasureMap(TreasureMapDimension(3, 3), NO_TREASURES)
+		val DIMENSION_3X3: TreasureMapDimension = TreasureMapDimension(3, 3)
+		val treasureMap = TreasureMap(DIMENSION_3X3, NO_TREASURES)
 
 		treasureMap isSiteOutOfBounds Site(0, 0) should be(false)
 		treasureMap isSiteOutOfBounds Site(3, 0) should be(true)
 		treasureMap isSiteOutOfBounds Site(1, 2) should be(false)
 		treasureMap isSiteOutOfBounds Site(1, 3) should be(true)
+		treasureMap isSiteOutOfBounds Site(-1, 0) should be(true)
+		treasureMap isSiteOutOfBounds Site(0, -1) should be(true)
 	}
 
 }
