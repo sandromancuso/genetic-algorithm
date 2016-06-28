@@ -12,8 +12,8 @@ class Evolution(gaConfig: GAConfig,
 		1 to gaConfig.generations foreach { n =>
 			nextPopulation = generation next fitPopulation
 			fitPopulation = populationFitnessCalculator calculateFitnessFor nextPopulation
-			val stayPuts = fitPopulation.fittestIndividual().actions.count(_ == Action.STAY_PUT)
-			println(s"Generation: ${n} - Fittest individual: ${fitPopulation.fittestIndividual().fitness}")
+			val pickUpTreasures = fitPopulation.fittestIndividual().actions.count(_ == Action.PICK_UP_TREASURE)
+			println(s"Generation: ${n} - Fittest individual: ${fitPopulation.fittestIndividual().fitness} - Gene: PICK_UP_TREASURES: ${pickUpTreasures}")
 		}
 		fitPopulation
 	}

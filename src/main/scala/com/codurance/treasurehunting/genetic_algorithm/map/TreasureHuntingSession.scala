@@ -3,6 +3,8 @@ package com.codurance.treasurehunting.genetic_algorithm.map
 import com.codurance.treasurehunting.domain.Action._
 import com.codurance.treasurehunting.domain._
 
+import scala.util.Random
+
 class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual, numberOfActionsToExcute: Int = 200) {
 
 	type Score = Int
@@ -81,7 +83,23 @@ class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual, n
 		} else {
 			score = score - 1
 //			chooseRandomMove()
+			moveToNewSite()
 		}
 
+	private def moveToNewSite() = {
+		var actions = Seq[Action.Value]()
+		if (canMoveNorth()) actions = actions :+ MOVE_NORTH;
+		if (canMoveSouth()) actions = actions :+ MOVE_SOUTH;
+		if (canMoveEast()) actions = actions :+ MOVE_EAST;
+		if (canMoveWest()) actions = actions :+ MOVE_WEST;
+		val action = actions(Random.nextInt(actions.size))
+		val situation = treasureMap situationFor currentSite
+		execute(action, situation)
+	}
+
+	private def canMoveNorth() = currentSite.y > 0
+	private def canMoveSouth() = currentSite.y < 9
+	private def canMoveEast() = currentSite.x < 9
+	private def canMoveWest() = currentSite.x > 0
 
 }

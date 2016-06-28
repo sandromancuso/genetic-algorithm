@@ -42,7 +42,7 @@ class Generation {
 	def mutate(individual: Individual): Individual = {
 		var mutatedIndividual = individual
 		1 to 10 foreach { i =>
-			val mutatedActions = mutatedIndividual.actions.updated(Random.nextInt(242), RandomAction.next())
+			val mutatedActions = mutatedIndividual.actions.updated(Random.nextInt(242), RandomAction.nextWithProbability())
 			mutatedIndividual = mutatedIndividual.copy(actions = mutatedActions)
 		}
 		mutatedIndividual
