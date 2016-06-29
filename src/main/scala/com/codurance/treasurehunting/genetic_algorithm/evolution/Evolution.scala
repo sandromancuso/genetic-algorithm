@@ -13,7 +13,7 @@ class Evolution(gaConfig: GAConfig,
 			nextPopulation = generation next fitPopulation
 			fitPopulation = populationFitnessCalculator calculateFitnessFor nextPopulation
 			val pickUpTreasures = fitPopulation.fittestIndividual().actions.count(_ == Action.PICK_UP_TREASURE)
-			println(s"Generation: ${n} - Fittest individual: ${fitPopulation.fittestIndividual().fitness} - Gene: PICK_UP_TREASURES: ${pickUpTreasures}")
+			println(s"Generation: ${n} - Fittest individual: ${fitPopulation.fittestIndividual().fitness} - Gene: PICK_UP_TREASURES: ${pickUpTreasures} - Populatio of: ${fitPopulation.size()}]")
 		}
 		fitPopulation
 	}
