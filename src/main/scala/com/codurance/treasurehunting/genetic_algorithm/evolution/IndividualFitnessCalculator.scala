@@ -5,19 +5,12 @@ import java.util.concurrent.atomic.AtomicInteger
 import com.codurance.treasurehunting.domain.Individual
 import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMapGenerator, TreasureHuntingSession, TreasureMap}
 
-class IndividualFitnessCalculator(numberOfHuntingSessions: Int,
-                                  mapGenerator: TreasureMapGenerator,
-                                  individualFitnessForMapCalculator: IndividualFitnessForMapCalculator) {
+class IndividualFitnessCalculator(individualFitnessForMapCalculator: IndividualFitnessForMapCalculator) {
 
-	def averageFitnessFor(individual: Individual): Int = {
-		val fitness = new AtomicInteger(0)
-
-		(1 to numberOfHuntingSessions).par foreach { _ =>
-			val map = mapGenerator next()
-			fitness.addAndGet(individualFitnessForMapCalculator.calculateFitness(map, individual))
-		}
-
-		fitness.get() / numberOfHuntingSessions
+	def averageFitnessFor(individual: Individual, treasureMaps: Seq[TreasureMap]): Int = {
+		treasureMaps.par
+				.map(individualFitnessForMapCalculator.calculateFitness(_, individual))
+				.sum / treasureMaps.size
 	}
 
 }

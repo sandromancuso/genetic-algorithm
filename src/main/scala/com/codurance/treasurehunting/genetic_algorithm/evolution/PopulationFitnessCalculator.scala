@@ -1,19 +1,27 @@
 package com.codurance.treasurehunting.genetic_algorithm.evolution
 
 import com.codurance.treasurehunting.domain.{Individual, Population}
+import com.codurance.treasurehunting.genetic_algorithm.GAConfig
+import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMap, TreasureMapGenerator}
 
-class PopulationFitnessCalculator(individualFitnessCalculator: IndividualFitnessCalculator) {
+import scala.collection.mutable
+
+class PopulationFitnessCalculator(gAConfig: GAConfig,
+                                  treasureMapGenerator: TreasureMapGenerator,
+                                  individualFitnessCalculator: IndividualFitnessCalculator) {
 
 	def calculateFitnessFor(population: Population): Population = {
-		var fitIndividuals: Seq[Individual] = Seq()
+		val treasureMaps = generateTreasureMaps()
 
-		population.individuals.par foreach { individual =>
-			val averageFitness = individualFitnessCalculator averageFitnessFor individual
-			val fitIndividual = individual.copy(fitness = averageFitness)
-			fitIndividuals = fitIndividuals :+ fitIndividual
-		}
+		val fitIndividuals = population.individuals.par.map(individual => {
+			val averageFitness = individualFitnessCalculator averageFitnessFor(individual, treasureMaps)
+			individual.copy(fitness = averageFitness)
+		})
 
-		Population(fitIndividuals: _*)
+		Population(fitIndividuals.toList:_*)
 	}
+
+	private def generateTreasureMaps() =
+		(1 to gAConfig.numberOfHuntingSessions).toList.par.map(_ => treasureMapGenerator.next()).toList
 
 }
