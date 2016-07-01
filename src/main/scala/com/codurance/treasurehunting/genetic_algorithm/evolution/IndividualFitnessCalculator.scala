@@ -7,11 +7,10 @@ import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMapGenerator
 
 class IndividualFitnessCalculator(individualFitnessForMapCalculator: IndividualFitnessForMapCalculator) {
 
-	def averageFitnessFor(individual: Individual, treasureMaps: Seq[TreasureMap]): Int = {
+	def averageFitnessFor(individual: Individual, treasureMaps: Seq[TreasureMap]): Int =
 		treasureMaps.par
-				.map(individualFitnessForMapCalculator.calculateFitness(_, individual))
-				.sum / treasureMaps.size
-	}
+			.map(individualFitnessForMapCalculator.calculateFitness(_, individual))
+			.sum / treasureMaps.size
 
 }
 
