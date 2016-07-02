@@ -68,7 +68,7 @@ class TreasureHuntingSessionShould extends UnitSpec {
 		treasureHuntingSession.currentSite should be(Site(0, 9))
 	}
 
-	"lose one point if picking up a treasure in an empty site" in new context {
+	"loose one point if picking up a treasure in an empty site" in new context {
 		given(treasureMap situationFor Site(0, 0)) willReturn situation
 		given(individual actionFor situation) willReturn PICK_UP_TREASURE
 

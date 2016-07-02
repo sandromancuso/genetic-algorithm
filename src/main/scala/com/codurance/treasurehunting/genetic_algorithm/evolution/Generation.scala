@@ -4,7 +4,7 @@ import com.codurance.treasurehunting.domain.{Individual, Population, RandomActio
 
 import scala.util.Random
 
-class Generation {
+class Generation(mutation: Mutation) {
 
 	def next(population: Population): Population = {
 
@@ -22,31 +22,25 @@ class Generation {
 		}
 
 		def generateChildren(parentA: Individual, parentB: Individual) = {
-			val splitPosition: Int = randomSplitPosition()
+			val splitPosition: Int = randomGeneIndex(parentA)
 			val parentA_splitDNA = parentA.actions.splitAt(splitPosition)
 			val parentB_splitDNA = parentB.actions.splitAt(splitPosition)
 
 			val child_1 = Individual(actions = parentA_splitDNA._1 ++ parentB_splitDNA._2)
 			val child_2 = Individual(actions = parentB_splitDNA._1 ++ parentA_splitDNA._2)
 
-			(mutate(child_1), mutate(child_2))
+			(mutation.mutate(child_1), mutation.mutate(child_2))
 		}
 
-		generateNextPopulation(new ParentSelection(population))
+		generateNextPopulation(parentSelectionFor(population))
 
 		Population(newIndividuals:_*)
 	}
 
-	def randomSplitPosition(): Int = Random.nextInt(242)
+	protected def parentSelectionFor(population: Population): ParentSelection =
+		new ParentSelection(population)
 
-	def mutate(individual: Individual): Individual = {
-		var mutatedIndividual = individual
-		1 to 10 foreach { i =>
-			val mutatedActions = mutatedIndividual.actions.updated(Random.nextInt(242), RandomAction.nextWithProbability())
-			mutatedIndividual = mutatedIndividual.copy(actions = mutatedActions)
-		}
-		mutatedIndividual
-	}
+	protected def randomGeneIndex(individual: Individual): Int = Random.nextInt(individual.actions.size - 1)
 
 }
 

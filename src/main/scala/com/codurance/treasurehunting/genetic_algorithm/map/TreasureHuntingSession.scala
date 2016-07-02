@@ -83,7 +83,7 @@ class TreasureHuntingSession(treasureMap: TreasureMap, individual: Individual, n
 		} else {
 			score = score - 1
 //			chooseRandomMove()
-			moveToNewSite()
+//			moveToNewSite()
 		}
 
 	private def moveToNewSite() = {
