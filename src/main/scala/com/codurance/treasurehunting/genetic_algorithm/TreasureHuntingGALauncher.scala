@@ -6,7 +6,7 @@ import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureGenerator, T
 
 object TreasureHuntingGALauncher extends App {
 
-	val gaConfig = new GAConfig(numberOfIndividuals = 300)
+	val gaConfig = new GAConfig
 
 	val randomIndividualGenerator = new RandomIndividualGenerator()
 	val randomPopulationGenerator = new RandomPopulationGenerator(randomIndividualGenerator)

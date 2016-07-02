@@ -1,10 +1,8 @@
 package com.codurance.treasurehunting.genetic_algorithm.evolution
 
-import com.codurance.treasurehunting.domain.{Individual, Population}
+import com.codurance.treasurehunting.domain.Population
 import com.codurance.treasurehunting.genetic_algorithm.GAConfig
-import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMap, TreasureMapGenerator}
-
-import scala.collection.mutable
+import com.codurance.treasurehunting.genetic_algorithm.map.TreasureMapGenerator
 
 class PopulationFitnessCalculator(gAConfig: GAConfig,
                                   treasureMapGenerator: TreasureMapGenerator,

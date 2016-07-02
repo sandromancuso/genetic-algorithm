@@ -3,7 +3,7 @@ package com.codurance.treasurehunting.genetic_algorithm.evolution
 import com.codurance.UnitSpec
 import com.codurance.treasurehunting.domain.Action.MOVE_NORTH
 import com.codurance.treasurehunting.domain.Individual
-import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMap, TreasureMapGenerator}
+import com.codurance.treasurehunting.genetic_algorithm.map.TreasureMap
 import org.mockito.BDDMockito.given
 import org.mockito.Matchers.{any, same}
 import org.mockito.Mockito.verify

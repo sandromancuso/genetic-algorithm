@@ -5,12 +5,13 @@ import com.codurance.treasurehunting.domain.Action._
 import com.codurance.treasurehunting.domain.{Individual, Site, Situation}
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito
+import org.mockito.Mockito.spy
 
 class TreasureHuntingSessionShould extends UnitSpec {
 
 	trait context {
 		val situation = mock[Situation]
-		val treasureMap = Mockito.spy(new TreasureMap())
+		val treasureMap = spy(new TreasureMap())
 		val individual = mock[Individual]
 
 		val numberOfActionsToExecute = 1

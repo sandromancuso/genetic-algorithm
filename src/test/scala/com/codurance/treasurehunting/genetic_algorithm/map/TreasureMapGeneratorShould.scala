@@ -15,7 +15,7 @@ class TreasureMapGeneratorShould extends UnitSpec {
 
 	"create a map according to the dimensions specified in the GA configuration" in new context {
 		val treasures = Seq(Treasure(), Treasure())
-		given(treasureGenerator randomTreasures()) willReturn(treasures)
+		given(treasureGenerator randomTreasures()) willReturn treasures
 
 		val treasureMap = treasureMapGenerator next()
 
@@ -24,7 +24,7 @@ class TreasureMapGeneratorShould extends UnitSpec {
 
 	"populate map with treasures" in new context {
 		val treasures = Seq(Treasure(), Treasure())
-		given(treasureGenerator randomTreasures()) willReturn(treasures)
+		given(treasureGenerator randomTreasures()) willReturn treasures
 
 	 	val treasureMap = treasureMapGenerator next()
 

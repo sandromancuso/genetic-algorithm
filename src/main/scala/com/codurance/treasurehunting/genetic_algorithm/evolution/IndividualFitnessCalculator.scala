@@ -1,9 +1,7 @@
 package com.codurance.treasurehunting.genetic_algorithm.evolution
 
-import java.util.concurrent.atomic.AtomicInteger
-
 import com.codurance.treasurehunting.domain.Individual
-import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureMapGenerator, TreasureHuntingSession, TreasureMap}
+import com.codurance.treasurehunting.genetic_algorithm.map.{TreasureHuntingSession, TreasureMap}
 
 class IndividualFitnessCalculator(individualFitnessForMapCalculator: IndividualFitnessForMapCalculator) {
 
