@@ -26,7 +26,7 @@ class PopulationFitnessCalculatorShould extends UnitSpec {
 																			treasureMapGenerator,
 																			individualFitnessCalculator)
 
-		given(treasureMapGenerator next()) willReturn(TREASURE_MAP_1, TREASURE_MAP_2)
+		given(treasureMapGenerator randomMaps gaConfig.numberOfHuntingSessions) willReturn TREASURE_MAPS
 	}
 
 	"calculate fitness for each individual in a population" in new context {

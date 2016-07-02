@@ -8,8 +8,16 @@ import scala.util.Random
 
 class TreasureMapGenerator(gaConfig: GAConfig, treasureGenerator: TreasureGenerator) {
 
+	val maps: List[TreasureMap] = createMapCache()
+
+	def randomMaps(number: Int): Seq[TreasureMap] = Random.shuffle(maps).take(number)
+
 	def next(): TreasureMap = TreasureMap(dimension = gaConfig.treasureMapDimension,
 										  treasures = treasureGenerator randomTreasures())
+
+	private def createMapCache(): List[TreasureMap] =
+		(1 to gaConfig.numberOfMapsInTheCache).par.map(_ => next()).toList
+
 
 }
 

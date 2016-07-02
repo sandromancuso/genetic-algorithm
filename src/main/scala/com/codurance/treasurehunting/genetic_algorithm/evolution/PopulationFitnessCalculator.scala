@@ -9,7 +9,7 @@ class PopulationFitnessCalculator(gAConfig: GAConfig,
                                   individualFitnessCalculator: IndividualFitnessCalculator) {
 
 	def calculateFitnessFor(population: Population): Population = {
-		val treasureMaps = generateTreasureMaps()
+		val treasureMaps = treasureMapGenerator.randomMaps(gAConfig.numberOfHuntingSessions)
 
 		val fitIndividuals = population.individuals.par.map(individual => {
 			val averageFitness = individualFitnessCalculator averageFitnessFor(individual, treasureMaps)
@@ -18,8 +18,5 @@ class PopulationFitnessCalculator(gAConfig: GAConfig,
 
 		Population(fitIndividuals.toList:_*)
 	}
-
-	private def generateTreasureMaps() =
-		(1 to gAConfig.numberOfHuntingSessions).toList.par.map(_ => treasureMapGenerator.next()).toList
 
 }
